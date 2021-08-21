@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include "sha256.h"
+#include <chrono>
 
 int main() {
 	while (true) {
-		std::ofstream out("\\");
+		std::ofstream out;
 		std::string in;
 		int hash = 5;
 		
@@ -45,16 +46,30 @@ int main() {
 		std::cout << "\nPlease enter your hash now. \n";
 		std::cin >> in;
 
-		std::cout << "\n\nYour hash is being craked. You can find a log of this hash in the log folder. This may take up to hours depending on how long the string is, so please be patient. Please note that if the original text is longer than 8 characters, it will not be able to process it.\n\n";
+		std::cout << "\n\nYour hash is being craked. You can find a log of this hash in the log folder. This may take hours depending on how long the string is, so please be patient. Please note that if the original text is longer than 8 characters, it will not be able to process it.\n\n";
 
 		bool isFound = false;
 		std::string arr[] = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"};
+		out.open("Log\\" + in + ".txt", std::ios_base::app);
+
+		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+		std::chrono::steady_clock::time_point end;
 
 		for (int i = 0; i < 62; i++) {
 			//std::cout << sha256(arr[i]) << std::endl;
 			if (sha256(arr[i]) == in) {
 				isFound = true;
 				std::cout << "The hash is equal to : " + arr[i] << std::endl;
+				out << "Hash : " + in + "\n";
+				out << "Original Text : " + (arr[i]) + "\n";
+
+				end = std::chrono::steady_clock::now();
+				if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+					out << "Time taken : Less than a minute...";
+				else
+					out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+				out.close();
 				break;
 			}
 		}
@@ -66,6 +81,17 @@ int main() {
 					if (sha256(arr[i] + arr[ie]) == in) {
 						isFound = true;
 						std::cout << "The hash is equal to : " + (arr[i] + arr[ie]) << std::endl;
+
+						out << "Hash : " + in + "\n";
+						out << "Original Text : " + (arr[i] + arr[ie]) + "\n";
+
+						end = std::chrono::steady_clock::now();
+						if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+							out << "Time taken : Less than a minute...";
+						else
+							out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+						out.close();
 						break;
 					}
 				}
@@ -83,6 +109,17 @@ int main() {
 						if (sha256(arr[i] + arr[ie] + arr[iea]) == in) {
 							isFound = true;
 							std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea]) << std::endl;
+
+							out << "Hash : " + in + "\n";
+							out << "Original Text : " + (arr[i] + arr[ie] + arr[iea]) + "\n";
+
+							end = std::chrono::steady_clock::now();
+							if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+								out << "Time taken : Less than a minute...";
+							else
+								out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+							out.close();
 							break;
 						}
 					}
@@ -105,6 +142,17 @@ int main() {
 							if (sha256(arr[i] + arr[ie] + arr[iea] + arr[ieac]) == in) {
 								isFound = true;
 								std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac]) << std::endl;
+
+								out << "Hash : " + in + "\n";
+								out << "Original Text : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac]) + "\n";
+
+								end = std::chrono::steady_clock::now();
+								if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+									out << "Time taken : Less than a minute...";
+								else
+									out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+								out.close();
 								break;
 							}
 						}
@@ -132,6 +180,17 @@ int main() {
 								if (sha256(arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb]) == in) {
 									isFound = true;
 									std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb]) << std::endl;
+
+									out << "Hash : " + in + "\n";
+									out << "Original Text : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb]) + "\n";
+
+									end = std::chrono::steady_clock::now();
+									if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+										out << "Time taken : Less than a minute...";
+									else
+										out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+									out.close();
 									break;
 								}
 							}
@@ -164,6 +223,17 @@ int main() {
 									if (sha256(arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe]) == in) {
 										isFound = true;
 										std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe]) << std::endl;
+
+										out << "Hash : " + in + "\n";
+										out << "Original Text : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe]) + "\n";
+
+										end = std::chrono::steady_clock::now();
+										if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+											out << "Time taken : Less than a minute...";
+										else
+											out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+										out.close();
 										break;
 									}
 								}
@@ -201,6 +271,17 @@ int main() {
 										if (sha256(arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea]) == in) {
 											isFound = true;
 											std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea]) << std::endl;
+
+											out << "Hash : " + in + "\n";
+											out << "Original Text : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea]) + "\n";
+
+											end = std::chrono::steady_clock::now();
+											if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+												out << "Time taken : Less than a minute...";
+											else
+												out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+											out.close();
 											break;
 										}
 
@@ -246,6 +327,17 @@ int main() {
 											if (sha256(arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea] + arr[ieacbeac]) == in) {
 												isFound = true;
 												std::cout << "The hash is equal to : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea] + arr[ieacbeac]) << std::endl;
+
+												out << "Hash : " + in + "\n";
+												out << "Original Text : " + (arr[i] + arr[ie] + arr[iea] + arr[ieac] + arr[ieacb] + arr[ieacbe] + arr[ieacbea] + arr[ieacbeac]) + "\n";
+
+												end = std::chrono::steady_clock::now();
+												if (std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() < 1)
+													out << "Time taken : Less than a minute...";
+												else
+													out << "Time taken : " << std::chrono::duration_cast<std::chrono::minutes>(end - begin).count() << " minutes";
+
+												out.close();
 												break;
 											}
 
@@ -281,6 +373,7 @@ int main() {
 					break;
 			}
 		}
+		std::cout << std::endl;
 	}
 
 	return 0;
