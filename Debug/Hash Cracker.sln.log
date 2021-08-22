@@ -1,2 +1,5 @@
-﻿  Main.cpp
+﻿  sha1.cpp
+C:\Users\dehla\Desktop\Visual Studio Projects\C++\Hash Cracker\sha1.cpp(74,15): warning C4309: 'argument': truncation of constant value
+C:\Users\dehla\Desktop\Visual Studio Projects\C++\Hash Cracker\sha1.cpp(94,29): warning C4244: '=': conversion from 'SHA1::uint64' to 'SHA1::uint32', possible loss of data
+C:\Users\dehla\Desktop\Visual Studio Projects\C++\Hash Cracker\sha1.cpp(262,29): warning C4244: 'argument': conversion from 'std::streamsize' to 'const unsigned int', possible loss of data
   Hash Cracker.sln.vcxproj -> C:\Users\dehla\Desktop\Visual Studio Projects\C++\Hash Cracker\Debug\Hash Cracker.exe
